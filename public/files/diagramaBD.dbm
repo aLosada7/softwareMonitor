@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel>
+<schema name="public" protected="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<database name="new_database">
+</database>
+
+<table name="usuarios">
+	<schema name="public"/>
+	<position x="257" y="170"/>
+	<column name="id">
+		<type name="serial"/>
+	</column>
+	<column name="nombre">
+		<type name="character" length="20"/>
+	</column>
+	<column name="apellidos">
+		<type name="character" length="100"/>
+	</column>
+	<column name="password">
+		<type name="character" length="100"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="character" length="100"/>
+	</column>
+	<constraint name="pk_idusuario" type="pk-constr" factor="10" table="public.usuarios">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="versiones">
+	<schema name="public"/>
+	<position x="581" y="129"/>
+	<column name="id">
+		<type name="serial"/>
+	</column>
+	<column name="nombre">
+		<type name="character" length="1000"/>
+	</column>
+	<column name="keynombre">
+		<type name="character" length="100"/>
+	</column>
+	<column name="proyecto">
+		<type name="character" length="1000"/>
+	</column>
+	<column name="keyproyecto">
+		<type name="character" length="1000"/>
+	</column>
+	<column name="propietario" not-null="true">
+		<type name="character" length="100"/>
+	</column>
+	<column name="porcompletado">
+		<type name="integer"/>
+	</column>
+	<column name="excluirtareas">
+		<type name="character" length="10000"/>
+	</column>
+	<column name="tareapruebas">
+		<type name="character" length="20"/>
+	</column>
+	<column name="consulta">
+		<type name="character" length="1000"/>
+	</column>
+	<column name="urljira">
+		<type name="character" length="1000"/>
+	</column>
+	<constraint name="pk_idversiones" type="pk-constr" factor="10" table="public.versiones">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="despliegues">
+	<schema name="public"/>
+	<position x="884" y="596"/>
+	<column name="id">
+		<type name="serial"/>
+	</column>
+	<column name="keynombre">
+		<type name="character" length="100"/>
+	</column>
+	<column name="keyproyecto">
+		<type name="character" length="100"/>
+	</column>
+	<column name="cliente">
+		<type name="character" length="100"/>
+	</column>
+	<column name="lugar">
+		<type name="character" length="100"/>
+	</column>
+	<column name="fotocliente">
+		<type name="character" length="1000"/>
+	</column>
+	<column name="documentos">
+		<type name="character" length="10000"/>
+	</column>
+	<constraint name="pk_iddespliegues" type="pk-constr" factor="10" table="public.despliegues">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="incidencias">
+	<schema name="public"/>
+	<position x="324" y="599"/>
+	<column name="id">
+		<type name="serial"/>
+	</column>
+	<column name="titulo">
+		<type name="character" length="100"/>
+	</column>
+	<column name="descripcion">
+		<type name="character" length="1000"/>
+	</column>
+	<column name="enlacetiger">
+		<type name="character" length="1000"/>
+	</column>
+	<column name="keynombre">
+		<type name="character" length="100"/>
+	</column>
+	<column name="keyproyecto">
+		<type name="character" length="100"/>
+	</column>
+	<constraint name="pk_idincidencias" type="pk-constr" factor="10" table="public.incidencias">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="versdesplegadas">
+	<schema name="public"/>
+	<position x="592" y="408"/>
+	<column name="id">
+		<type name="serial"/>
+	</column>
+	<column name="nombre">
+		<type name="character" length="1000"/>
+	</column>
+	<column name="keynombre">
+		<type name="character" length="100"/>
+	</column>
+	<column name="proyecto">
+		<type name="character" length="1000"/>
+	</column>
+	<column name="keyproyecto">
+		<type name="character" length="100"/>
+	</column>
+	<column name="archivos">
+		<type name="character" length="10000"/>
+	</column>
+	<constraint name="pk_idversdesplegada" type="pk-constr" factor="10" table="public.versdesplegadas">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+</dbmodel>

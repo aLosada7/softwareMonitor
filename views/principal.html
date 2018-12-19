@@ -1,0 +1,30 @@
+
+<div class="container" ng-controller="ctrlAcceso" style="padding: 5%;">
+
+	<div class="panel panel-default panelRegistro">
+		<div class="panel-heading" style="background-color: rgb(51, 51, 51);color:white;"><strong>Login con Jira</strong></div>
+		<div class="panel-body">
+			<div class="panel panel-default" id="panelLoginMal">
+			  <div class="panel-body" style="border:2px solid #D11A1A;">
+			    <span class="glyphicon glyphicon-exclamation-sign red"></span> Los datos introducidos son incorrectos.
+			  </div>
+			</div>
+			<form name="registroForm" href="#!/principalUsuario" ng-submit="comprobarLogin(userInfo)">
+				<div class="form-group">
+			    	<label for="usuario">Usuario</label>
+			    	<input type="text" id="emailRegistro" class="form-control" ng-model="userInfo.usuario" aria-describedby="emailHelp" placeholder="Tu nombre de usuario">
+			  	</div>
+			  	<div class="form-group">
+			    	<label for="contra">Contraseña de Jira</label>
+			    	<input type="password" class="form-control" id="contRegistro" ng-model="userInfo.password" placeholder="Introduce una contraseña">
+			    	<small id="conHelp" class="form-text text-muted">Tu contraseña no sera guardada.</small>
+			  	</div>
+			  	<input type="submit" class="btn btn-default form-control" value="Acceder"></input>
+			  	<br>
+			  	<small id="conHelp" class="form-text text-muted">Si no cuentas con credenciales de Jira, desgraciadamente debes pedir permiso para acceder.</small>
+			  	<br>
+		  	</form>
+		</div>
+	</div>
+
+</div>

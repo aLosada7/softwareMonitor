@@ -1,0 +1,116 @@
+<div class="container" ng-controller="ctrlPrinUsuario" style="margin-top:50px;">
+
+  <div class="row">
+      <div class="col-xs-6 col-md-4">
+        <div class="panel panel-default arriba">
+          <div class="panel-heading" style="background-color: rgb(51, 51, 51);color:white;"><strong>Introducción</strong></div>
+            <div class="panel-body">
+                <h2 style="color:#575757;">Hola <i>{{datosUsuario[0].nombre}}</i></h2>
+                <p><strong style="font-size:15px;color:#575757;">has sido identificado como <i>{{datosUsuario[0].usuario}}</i></strong></p>
+
+                <p style="font-size:15px;">Queremos darte la bienvenida a <i>MONITCDVS.</i></p>
+
+          <p style="font-size:15px;">Estamos encantados de que confies en nuestro trabajo para facilitar la progresión de tus grandes proyectos.</p>
+
+          <p style="font-size:15px;">¡Esperamos que con nuestra ayuda todos tus proyectos se conviertan en un gran éxito!</p>
+          <br><br><br><br><br>
+          <p style="font-size:15px;">Si necesitas ayuda, haz click <a href="#!/ayuda">aquí</a></p>
+          <br>
+            </div>
+        </div>
+        </div>
+      <div class="col-xs-12 col-md-8">
+        <div class="panel panel-default arriba">
+          <div class="panel-heading" style="background-color: rgb(51, 51, 51);color:white;"><strong>Mis versiones</strong></div>
+          <div class="panel-body">
+            <div class="row">
+            <table class="table table-hover table-fixed">
+                  <thead>
+                    <tr style="color:#575757">
+                      <th class="col-xs-4">Versión</th>
+                      <th class="col-xs-4">Proyecto</th>
+                      <th class="col-xs-4"></th>
+                    </tr>
+                  </thead>
+                  <tbody style="height: 350px;">
+                    <tr ng-repeat="elem in versiones">
+                        <td class="col-xs-4">{{elem.nombre}}</td>
+                        <td class="col-xs-4">{{elem.proyecto}}</td>
+                        <td class="col-xs-4"><button class="btn btn-default" id="mostrarResumen" ng-click="myFunction(elem)">Ver resumen</button></td>
+                        
+                    </tr>
+                  </tbody>
+
+          </table>
+                <!-- {{Result}} -->
+          </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<br>
+
+  <div class="row">
+    <div class="panel panel-default panelAbajo" style="background-color:white;">
+        <div class="panel-heading" style="background-color: rgb(51, 51, 51);color:white;"><strong>Resumen de la versión</strong></div>
+        <div class="panel-body">
+            <div id="noVersionSeleccionada"><h2 class="centrar">Selecciona una version para visualizar su resumen</h2></div>
+            <div id="siVersionSeleccionada">
+              <div class="row">
+
+                <div class="col-xs-6 col-md-4" style="padding: 3%;">
+                    <p style="text-align:center; font-size:20px;color:#575757;" title="Nombre de la versión"><i>{{both.nombre}}</i></p>
+                    <p style="text-align:center;color:#9C9A9A;" title="Nombre del proyecto">{{both.proyecto}}</p>
+                    <div class="row">
+                        <div class="col-md-5 col-md-offset-1"><h3 class="form-control" style="text-align: center;color:#575757;" title="Key de la versión"><strong>{{both.keynombre}}</strong></h3></div>
+                        <div class="col-md-5"><h3 class="form-control" style="text-align: center;color:#575757;" title="Key del proyecto"><strong>{{both.keyproyecto}}</strong></h3></div>
+                      </div>
+                </div>
+                <div class="col-xs-12 col-md-8" style="padding: 1%;">
+                    <div class="progress">
+                        <div class="progress-bar bg-info" id="theprogressbar" role="progressbar" aria-valuenow="0"
+                        aria-valuemin="0" aria-valuemax="100">
+                          {{both.porcompletado | number:0}}% completado
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align:center;"><a target="_blank" href="{{both.urljira}}" title="Ir a la página de la versión en Jira"><i><u><img src="http://tariq.benezza.xyz/img/JIRA.png" width="80"></a></u></i></p>
+                <br>
+                <div class="row">
+                  <div class="col-md-4 col-md-offset-2"><p class="form-control" style="text-align:center;">Versión desplegada:<strong> {{desplegado}}</strong></p></div>
+                </div>
+
+
+                
+              </div>
+              
+              
+
+            </div>
+        </div>
+    </div>
+  </div>
+           <!-- PRIORIDAD:
+             <a href="#" class="btn btn-sm btn-warning disabled"><span class="glyphicon glyphicon-thumbs-down"></span> Pendiente</a> 
+            <a href="#" class="btn btn-sm btn-info disabled"><span class="glyphicon glyphicon-play"></span> Desarrollo</a>
+            <a href="#" class="btn btn-primary btn-primary disabled"><span class="glyphicon glyphicon-check"></span> Pruebas</a>
+            <a href="#" class="btn btn-sm btn-success disabled"><span class="glyphicon glyphicon-thumbs-up"></span> Despliegue</a>
+            <p><span class="glyphicon glyphicon-arrow-up"></span> Alta</p>
+            <p><span class="glyphicon glyphicon-arrow-left"></span> Normal</p>
+            <p><span class="glyphicon glyphicon-arrow-down"></span> Baja</p>
+            <br>
+            ESTADO:
+            <a href="#" class="btn btn-sm btn-warning disabled"><span class="glyphicon glyphicon-thumbs-down"></span> Pendiente</a> 
+            <a href="#" class="btn btn-sm btn-info disabled"><span class="glyphicon glyphicon-play"></span> En progreso</a> 
+            <a href="#" class="btn btn-sm btn-success disabled"><span class="glyphicon glyphicon-thumbs-up"></span> Completado</a>
+            <br>
+            <label for="porCompletado">Porcentaje Completado</label>
+            <div class="progress">
+                <div class="progress-bar" id="theprogressbar" role="progressbar" aria-valuenow="70"
+                aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                  70%
+                </div>
+            </div>-->
+
+</div>

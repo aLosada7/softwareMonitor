@@ -1,0 +1,196 @@
+body{
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: #F2EFEF;
+}
+
+.navHeader {
+    background-color: #363434;
+}
+
+.navHeaderLetra {
+    color: white;
+}
+
+.interfaz{
+  margin-top:70px;
+  height: 800px;
+}
+
+/*PRINCIPAL*/
+.arriba{
+	height: 450px;
+}
+
+.panelAbajo{
+	height: 250px;
+}
+
+.grisVersion{
+  color: #A4A3A3;
+}
+
+.centrar{
+	text-align: center;
+  margin-top: 50px;
+	color: #A4A3A3;
+}
+.centrar2{
+	text-align: center;
+	margin-top: 250px;
+	color: #A4A3A3;
+}
+
+
+th{
+	text-align: center;
+}
+
+td{
+	text-align: center;
+}
+
+/*MONITORIZACIÓN*/
+
+.excluirVersiones{
+	overflow: scroll;
+	height: 100px;
+	resize:none;
+}
+
+#consultaJira{
+	overflow: scroll;
+	height: 150px;
+	resize:none;
+}
+
+
+
+
+/*Ayuda*/
+.ayudasGen {
+	height: 40px;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+#lightbox .modal-content {
+    display: inline-block;
+    text-align: center;   
+}
+
+#lightbox .close {
+    opacity: 1;
+    color: rgb(255, 255, 255);
+    background-color: rgb(25, 25, 25);
+    padding: 5px 8px;
+    border-radius: 30px;
+    border: 2px solid rgb(255, 255, 255);
+    position: absolute;
+    top: -15px;
+    right: -55px;
+    
+    z-index:1032;
+}
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.colorNav{
+  background-color: rgb(51, 51, 51);
+  color:white;
+}
+
+span.grey {
+  background: #cccccc;
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  color: #fff;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 1.6em;
+  margin-right: 15px;
+  text-align: center;
+  width: 1.6em; 
+}
+span.greyTitulo {
+  background: #cccccc;
+  border-radius: 1.5em;
+  -moz-border-radius: 1.5em;
+  -webkit-border-radius: 1.5em;
+  color: #fff;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 3em;
+  margin-right: 15px;
+  text-align: center;
+  width: 3em; 
+}
+
+.table-fixed thead {
+  width: 97%;
+}
+.table-fixed tbody {
+  overflow-y: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
+  border-bottom-width: 0;
+}
+
+
+textarea {
+    resize: none;
+}
+
+.centrar{
+  text-align: center;
+}
+
+
+.panel-horizontal .panel-body {
+       float: right;
+       padding-bottom: 0;
+       width: 100%;
+       padding: 0;
+}
+
+.fotoMonitor{
+  width: 50px;
+  height: 50px;
+}
+
+.panelMonitor{
+  width: 200px;
+  height: 200px;
+}
+
+.botonIniciarMonitor{
+  margin-top: 10%;
+  margin-left: 5%;
+}
+
+

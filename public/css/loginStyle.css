@@ -1,0 +1,30 @@
+body{
+	background-image: url(images/FONFO_FRACTAL.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: #464646;
+}
+
+
+
+@media (min-width: 768px) {
+  .navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+  }
+}
+
+.red {
+    color: red;
+}
+
+
+
+/*Registro*/
+.panelRegistro{
+	width: 60%;
+	margin: 10% auto;
+}

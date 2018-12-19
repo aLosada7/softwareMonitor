@@ -1,0 +1,396 @@
+<div  class="container interfaz" ng-controller="ctrlDespliegue">
+	<div class="row">
+	  	<div class="col-xs-6 col-md-4">
+		  	<div class="panel panel-default" style="height:650px;">
+			  	<div class="panel-heading" style="background-color: rgb(51, 51, 51);color:white;"><strong>Mis despliegues</strong></div>
+			  	<div class="panel-body">
+			  		<div class="row">
+				  		<table class="table table-hover table-fixed">
+			                <thead class="text-primary">
+			                    <tr style="color:#575757">
+			                    	<th class="col-xs-2"></th>
+			                      	<th class="col-xs-5">Versión</th>
+			                      	<th class="col-xs-5">Proyecto</th>
+			                    </tr>
+			                </thead>
+			                <tbody style="height: 550px;">
+			                	<tr ng-repeat="it in despliegues">
+			                		<td class="col-xs-2"><button type="button" class="btn btn-default btn-sm" ng-click="desplVersion(it)">+</button></td>
+			                		<td class="col-xs-5"><p style="margin-top:5px;">{{it.nombre | limitTo:20}}</p></td>
+			                		<td class="col-xs-5"><p style="margin-top:5px;">{{it.proyecto}}</p></td>
+			                	</tr>
+			                	
+			                </tbody>
+			          </table>
+		         	</div>
+			  	</div>
+			</div>
+			<!-- nueva versión despliegue modal-->
+			<button type="button" ng-click="nVersion()" class="btn btn-default btn-block" style="height: 70px;" data-toggle="modal" data-target="#nuevoDespliegueModal">
+			  Desplegar una versión
+			</button>
+			<div class="modal fade" id="nuevoDespliegueModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-lg" role="document">
+			    <div class="modal-content">
+			      <div class="panel-heading" style="background-color: rgb(51, 51, 51);color:white;"><strong>Añadir nuevo despliegue</strong></div>
+			      <div class="modal-body">
+			        <h4>Selecciona la versión a desplegar:</h4>
+			        	<select class="form-control" ng-model="versionSelec" ng-change="cambioVersDespl()" style="background-color:white;">
+			            	<option ng-repeat="item in versNoDesplegadas" value="{{item.id}}">{{item.nombre}} - {{item.proyecto}}</option>
+			          	</select>
+			         <br><br>
+			         <div class="row" id="mostrarDespliegue">
+					  <div class="col-xs-6 col-md-4"><p>{{versEscogida[0].nombre}}</p></div>
+					  <div class="col-xs-6 col-md-4"><p>{{versEscogida[0].porcompletado}}% completado</p></div>
+					  <div class="col-xs-6 col-md-4">
+					  	<div class="progress">
+						  <div class="progress-bar progress-bar-success" role="progressbar"
+						       aria-valuenow="{{versEscogida[0].porcompletado}}" aria-valuemin="0" aria-valuemax="100"
+						       style="width: {{versEscogida[0].porcompletado}}%">
+						  </div>
+						</div>
+					  </div>
+					</div>
+			         
+			        <br><p><strong>NOTA: El nuevo despliegue se hará efectivo en el momento en el que aceptes.</strong></p><br>
+			        <p style="text-align:center;"><button type="button" id="botonDesplegar" class="btn btn-primary" ng-click="nuevoDespliegue(versEscogida[0])" disabled="">Desplegar versión</button></p>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!-- fin nueva version desplegar-->
+		</div>
+		<div class="col-xs-12 col-md-8">
+	  		<div class="panel panel-default" style="height:300px;">
+	  			<div class="panel-heading" style="background-color: rgb(51, 51, 51);color:white;"><strong>Información de la versión</strong></div>
+			  	<div class="panel-body">
+				  	<div id="noVersionSeleccionada"><h2 class="centrar">Selecciona una versión para ver su información</h2></div>
+		          	<div id="siVersionSeleccionada" style="text-align:center;">
+					  	<h2 style="color:#575757;"><i>{{versDespliegue.nombre}}</i></h2>
+					  	<h4 style="color:#9C9A9A;">{{versDespliegue.proyecto}}</h4>
+					  	
+					  	<div class="row">
+						  <div class="col-md-5 col-md-offset-1"><h3 class="form-control">Número de despliegues totales: <strong>{{numeroDeDesplieguesTotal}}</strong></h3></div>
+						  <div class="col-md-5"><h3 class="form-control">Número de indicencias totales: <strong>{{numeroDeIncidenciasTotal}}</strong></h3></div>
+						</div>
+
+					  	<br>
+
+					  		<!-- Modal incidencias-->
+                			<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#indicenciasModal">
+							  Gestor de incidencias
+							</button>
+							<div class="modal fade" id="indicenciasModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog modal-lg" role="document">
+							    <div class="modal-content">
+							      <div class="panel-heading" style="background-color: #222;color:white;"><strong>Gestor de incidencias</strong></div>
+							      <div class="modal-body" style="text-align: center;">
+							        
+							        <div class="row">
+							        	<div class="col-md-4 col-md-offset-4"><h3 class="form-control">Número de incidencias totales: <strong>{{numeroDeIncidenciasTotal}}</strong></h3></div>
+							        
+							        </div>
+							        <div class="row">
+							            <table class="table table-hover table-fixed">
+							                  <thead class="thead-dark">
+							                    <tr style="color:#575757">
+							                    	<th class="col-xs-2">Gestionar</th>							                    	
+							                      	<th class="col-xs-2">Titulo</th>
+							                      	<th class="col-xs-2">Enlace vTiger CRM</th>
+							                      	<th class="col-xs-6">Descripción</th>
+							                      	
+							                    </tr>
+							                  </thead>
+							                  <tbody style="height: 200px;">
+							                    <tr ng-repeat="elem in incidencias">
+							                    	<td class="col-xs-2"><button type="button" class="btn btn-default btn-sm" ng-click="eliminarIncidencia(elem)"><span class="glyphicon glyphicon-trash"></span></button></td>  
+							                        <td class="col-xs-2">{{elem.titulo}}</td>
+							                        <td class="col-xs-2"><a href="{{elem.enlacetiger}}" target="_blank">Enlace</a></td>
+							                        <td class="col-xs-6">{{elem.descripcion}}</td>
+							                           
+							                    </tr>
+							                  </tbody>
+
+							          </table>
+						                
+						          </div>
+							        
+									<p>{{versDespliegue.urljira}}</p>
+							        <p style="text-align:center;"><a target="_blank" href="{{urljira}}">Ir a la página de la versión en Jira</a></p>
+							        <br>
+							        <div class="panel panel-default">
+									  <div class="panel-body">
+									  	<h4 style="text-align: center; color: rgb(87, 87, 87);">NUEVA INCIDENCIA</h4>
+							        <div class="row">
+							        	<div class="col-xs-6 col-md-4"><label for="comment">Título</label><input type="text" ng-model="inc.titulo" class="form-control"/></div>
+									  <div class="col-xs-12 col-md-8"><label for="comment">Enlace vTiger CRM</label><input type="text" ng-model="inc.link" class="form-control"/></div>
+									  
+									</div>
+							        <br>
+							        
+
+							        <div class="form-group">
+									  <label for="comment">Descripción:</label>
+									  <textarea class="form-control" ng-model="inc.descripcion" rows="5" id="comment"></textarea>
+									</div>
+
+									
+							        
+							        <a class="btn btn-default" ng-click="abrirIncidencias()">Registrar nueva incidencia <span class="glyphicon glyphicon-edit"></span></a>
+									  </div>
+									</div>
+							        
+							        
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							<!--Final Modal Incidencias-->
+							<br>
+							<div class="row">
+							  <div class="col-xs-6" style="text-align: left;"></div>
+							  <div class="col-xs-6" style="text-align: right;"><p style="text-align:right;">{{actualizado}}</p></div>
+							</div>
+						
+					</div>
+				</div>
+			</div><br><br>
+			<div class="panel panel-default" style="height:385px;">
+				<div class="panel-heading" style="background-color: rgb(51, 51, 51);color:white;"><strong>Despliegues de la versión</strong></div>
+			  <div class="panel-body">
+			  	<div id="noVersionSeleccionada2"><h2 class="centrar">Selecciona una versión para ver sus despliegues</h2></div>
+		        <div id="siVersionSeleccionada2">
+		        	<div style="text-align: right;"><a href="" data-toggle="modal" data-target="#nuevoLugarClienteModal" ng-click="abrirInfo()">
+							  Añadir nuevo cliente o lugar
+							</a></div>
+		        	<div class="modal fade" id="nuevoLugarClienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-lg" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					      	<div class="row">
+							  <div class="col-xs-6">
+							  	<a class="btn btn-block btn-default" id="clExist">Cliente existente</a>
+							  </div>
+							  <div class="col-xs-6">
+							  	<a class="btn btn-block btn-default" id="nuevCl">Nuevo cliente</a>
+							  </div>
+							</div>
+					        
+					      </div>
+					      <div class="modal-body">
+					      	<div id="clienteExistente">
+					      		<div class="row">
+								  <div class="col-xs-6">
+								  	<p>Cliente</p>
+						      		<select class="form-control" id="clientExt" ng-model="infoCliente.cliente" ng-change="actualizarFotoCliente(infoCliente)">
+						      			<option ng-repeat="item in empresasVersion">{{item.cliente}}</option>
+						      		</select><br>
+						      		<p>Lugar</p>
+						      		<input type="text" class="form-control" id="lugarExt" ng-model="infoCliente.lugar">
+								  </div>
+								  <div class="col-xs-6">
+								  		<p style="text-align: center;"><img src="./files/{{foto}}" width="200" height="200" style="border-radius: 50%;" ng-model="infoCliente.foto"></p>
+								  </div>
+								</div><br>
+					      		<div class="panel panel-default">
+								  <div class="panel-body">
+								  	<div class="row">
+								  
+										  <div class="col-xs-9 col-md-6 col-xs-offset-3" style="text-align: center;">
+										  	<h4 style="text-align: center;">NUEVO DESPLIEGUE</h4>
+										  	<p>A continuación escoge los archivos, artefactos o documentos que formen parte del primer despliegue.</p>
+										  	<label class="import-file">
+											    <input type="file" name="file" class="form-control" multiple onchange="angular.element(this).scope().fileNameChanged(this)">
+											</label><br>
+											
+												<div class="row">
+													  <div class="col-md-8"><label for="numeroE" style="padding: 2%;">Número de equipos a despegar:</label></div>
+													  <div class="col-md-4"><input type="text" placeholder="1" class="form-control col-md-2" ng-model="infoCliente.numEquipos" style="text-align:center;"  value="1"></div>
+												</div>
+												
+
+										  	
+										  
+										  </div>
+
+									</div>
+									<br>
+									<p style="text-align: center;"><button type="button" class="btn btn-default" ng-click="nuevoDespliegueCliente(infoCliente)"><span class="glyphicon glyphicon-pencil"></span> Registrar despliegue/s</button></p>
+								  </div>
+								</div>
+					      		
+
+					      	</div>
+					      	<div id="nuevoCliente">
+					      		<div class="row">
+								  <div class="col-xs-6">
+								  	<p>Nombre del nuevo cliente</p>
+						      		<input type="text" ng-model="infoCliente2.cliente" id="clientExt2" class="form-control" value=""><br><br>
+						      		<p>Primer lugar despliegue</p>
+						      		<input type="text" ng-model="infoCliente2.lugar" id="lugarExt2" class="form-control">
+								  </div>
+								  <div class="col-xs-6">
+								  	<p style="text-align: center;">IMAGEN</p>
+								  	<div ng-repeat="step in stepsModel">
+												    <p style="text-align: center;"><img class="thumb" ng-src="{{step}}" ng-model="infoCliente2.foto" width="200" height="200" style="border-radius: 50%;"/></p>
+												</div>
+
+									<input type='file' id="fotoNuevo" ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" />
+								  </div>
+								</div>
+								<br>
+								<div class="panel panel-default">
+								  <div class="panel-body">
+								  	<div class="row">
+								  
+										  <div class="col-xs-9 col-md-6 col-xs-offset-3" style="text-align: center;">
+										  	<h4 style="text-align: center;">NUEVO DESPLIEGUE</h4>
+										  	<p>A continuación escoge los archivos, artefactos o documentos que formen parte del primer despliegue.</p>
+										  	<label class="import-file">
+											    <input type="file" name="file" class="form-control" multiple onchange="angular.element(this).scope().fileNameChanged(this)">
+											</label><br>
+											
+												<div class="row">
+													  <div class="col-md-8"><label for="numeroE" style="padding: 2%;">Nº de equipos a despegar:</label></div>
+													  <div class="col-md-4"><input type="text" class="form-control col-md-2" placeholder="1" ng-model="infoCliente.numEquipos" style="text-align: center;" value="1"></div>
+												</div>
+												
+
+										  	
+										  
+										  </div>
+
+									</div>
+									<br>
+									<p style="text-align: center;"><button type="button" class="btn btn-default" ng-click="nuevoDespliegueCliente2(infoCliente)"><span class="glyphicon glyphicon-pencil"></span> Registrar despliegue/s</button></p>
+								  </div>
+								</div>
+								
+					      		
+					      	</div>
+					        
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					<br>
+					<div class="row">
+			  		<table class="table table-hover table-fixed">
+		                <thead class="text-primary">
+		                    <tr style="color:#575757; margin-left: 25px;">
+		                      <th class="col-xs-6">Cliente</th>
+		                      <th class="col-xs-2">Lugar</th>
+		                      <th class="col-xs-2">Nº de equipos</th>
+		                      <th class="col-xs-2"></th>
+		                    </tr>
+		                </thead>
+		                <tbody style="height: 250px;">
+		                	<tr ng-repeat="despliegueInd in despliegueVersion" style="color:#575757;height: 80px;">
+		                		<td class="col-xs-6"><img src="./files/{{despliegueInd.fotocliente}}" height="40" width="40" style="border-radius: 50%;">   {{despliegueInd.cliente}}</td>
+		                		<td class="col-xs-2">{{despliegueInd.lugar}}</td>
+		                		<td class="col-xs-2">{{despliegueInd.nEquipos}}</td>
+		                		<td class="col-xs-2">
+		                			<!--Modal equipos desplegado-->
+		                			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#despliegueModal" ng-click="verDatosLugarEmpresa(despliegueInd)">
+									  Ver más
+									</button>
+									<div class="modal fade" id="despliegueModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									  <div class="modal-dialog modal-lg" role="document">
+									    <div class="modal-content">
+									      <div class="modal-body"><br>
+									      	<div class="row">
+											  <div class="col-xs-6" style="text-align:center;"><img src="./files/{{datos.fotocliente}}" width="150" height="150" style="border-radius: 50%;"></div>
+											  <div class="col-xs-6">
+											  	<br><br>
+											  	<h2 style="text-align:center;color:#575757;">{{datos.cliente | uppercase}}</h2>
+											  	<h4 style="text-align:center;color:#9C9A9A;">{{datos.lugar}}</h4>
+											  </div><br>
+											</div><br>
+											<div class="row">
+											  
+											  <div class="col-xs-12 col-md-8 col-md-offset-2" style="height: 200px;overflow-y: auto;overflow-x: hidden;">
+											  	<table class="table table-hover">
+									                <tbody>
+									                	<tr ng-repeat="item in mostrarDatosFinal" style="overflow-x: hidden;">
+									                		<th>
+										                		<div class="row">
+										                			<div class="col-md-6"><p>En <strong style="font-size: 20px;">{{item.nEquipos}}</strong> equipo/s</p><small class="form-text text-muted">{{item.nArchivos}} archivo/s</small></div>
+																  	<div class="col-md-6">
+																  		<div ng-repeat="step in item.archivos">
+																		    <a target="_blank" href="./files/{{step}}"> {{step}} </a>
+																		</div>
+																  	</div>
+																</div>
+																
+									                		</th>
+														</tr>
+													</tbody>       	
+										        </table>
+											  </div>
+											</div>
+									        
+									        <br>
+									        <a id="abrirCerrar3" href=""><p style="text-align:center;">Añadir nuevo/s equipo/s en {{datos.cliente}}, {{datos.lugar}}</p></a>
+									        
+									        <div id="agregarDespliegue">
+
+									        	<div class="panel panel-default">
+								  <div class="panel-body">
+								  	<div class="row">
+								  
+										  <div class="col-xs-9 col-md-6 col-xs-offset-3" style="text-align: center;">
+										  	<h4 style="text-align: center;">NUEVO DESPLIEGUE</h4>
+										  	<p>A continuación escoge los archivos, artefactos o documentos que formen parte del primer despliegue.</p>
+										  	<label class="import-file">
+											    <input type="file" name="file" class="form-control" multiple onchange="angular.element(this).scope().fileNameChanged(this)">
+											</label><br>
+											
+												<div class="row">
+													  <div class="col-md-8"><label for="numeroE" style="padding: 2%;">Nº de equipos a despegar:</label></div>
+													  <div class="col-md-4"><input type="text" class="form-control col-md-2" ng-model="infoCliente.numEquipos" placeholder="1" style="text-align:center;" value="1"></div>
+												</div>
+												
+
+										  	
+										  
+										  </div>
+
+									</div>
+									<br>
+									<p style="text-align: center;"><button type="button" class="btn btn-default" ng-click="nuevoDespliegueExistente(infoCliente)"><span class="glyphicon glyphicon-pencil"></span> Registrar despliegue</button></p>
+								  </div>
+								</div>
+									        	
+											        
+												
+											</div>
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+									<!-- Fin Modal equipos desplegado-->
+								</td>
+		                	</tr>
+		                	
+		                </tbody>
+		          </table>
+		      </div>
+		        </div>
+			 </div>
+			</div>
+		</div>
+		
+	</div>
+</div>

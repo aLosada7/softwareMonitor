@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <title>MONITCDVS </title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/loginStyle.css">
+  <link href="/css/css-circular-prog-bar.css" rel="stylesheet">
+
+
+
+</head>
+<body>
+
+  <div id="navNoRegistrado" ng-controller="ctrlAcceso">
+
+    <nav class="navbar navbar-default navbar-inverse" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>    
+  </div>
+  <div class="navbar-collapse collapse">
+
+    <ul class="nav navbar-nav navbar-center">
+        <li><a href="#!/" class="navbar-brand"><span style="color: white; font-family: Georgia, serif; font-size: 150%;">MONITCDVS</span></a></li>
+    </ul>
+
+  </div>
+</nav>
+
+    </div>
+  </div>
+
+  <div id="navRegistrado">
+    <nav class="collapse navbar-collapse navbar-inverse bg-inverse navHeader">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#!/principalUsuario"><span style="color: white; font-family:Georgia, serif; font-size: 150%;">MONITCDVS</span></a>
+        </div>
+        <ul class="nav navbar-nav navbar-center">
+          <li><a href="#!/monitorizacion"><span class="navHeaderLetra" style="font-family: "Times New Roman", Times, serif;">Monitorización</span></a></li>
+          <li><a href="#!/despliegue"><span class="navHeaderLetra" style="font-family: "Times New Roman", Times, serif;">Despliegues</span></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/"><span class="navHeaderLetra" style="font-family: "Times New Roman", Times, serif;"><span class="glyphicon glyphicon-off"></span> Salir</span></a></li>
+        </ul>
+      </div>
+    </nav>
+    <br>
+  </div>
+
+  <div ng-view></div>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-cookies.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
+  <script src="/js/controladores.js"></script>  
+  <script src="/js/bootstrap.js"></script>
+
+
+
+  
+</body>
+</html>
